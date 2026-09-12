@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vine Generator: Documentation</title><meta name="description" content="Vine Generator documentation: setup, growth guides, foliage, pruning, Static Mesh export, runtime preparation, and Reclaimed tour controls.">
+<style>
+:root{color-scheme:dark;--page:#101318;--panel:#181d24;--panel2:#202731;--text:#e9edf2;--muted:#aeb8c5;--line:#343e4b;--accent:#62b5ff;--code:#0c0f13;font-family:"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--text);font-size:16px;line-height:1.65}a{color:var(--accent);text-underline-offset:.18em}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible,input:focus-visible,.table-scroll:focus-visible{outline:3px solid var(--accent);outline-offset:3px}button,input{font:inherit}button{cursor:pointer}button,input{border:1px solid var(--line);border-radius:5px;background:var(--code);color:var(--text);padding:.5rem .65rem}button:hover{background:var(--panel2)}input{width:100%;min-width:0}input::placeholder{color:var(--muted)}[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-100px;z-index:10;background:var(--panel);padding:12px}.skip:focus{top:12px}.layout{display:grid;grid-template-columns:260px minmax(0,920px);gap:42px;max-width:1278px;margin:auto;padding:38px 28px 80px}nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;padding:18px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}nav h2{margin:0 0 12px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}nav a{display:block;padding:.3rem .35rem;border-radius:4px;color:var(--text);text-decoration:none;font-size:.92rem}nav a:hover{background:var(--panel2)}nav a.small{font-size:.85rem;padding-left:1rem;color:var(--muted)}.search-tools{margin-bottom:16px}.search-tools label{display:block;font-size:.85rem;margin-bottom:5px}.search-line{display:flex;gap:6px}.search-line button{padding:.4rem .55rem}.search-status{color:var(--muted);font-size:.8rem;min-height:1.4em;margin:7px 0 0}main{min-width:0}header{margin-bottom:34px;padding-bottom:28px;border-bottom:1px solid var(--line)}.eyebrow{font-size:.83rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}h1,h2,h3,h4{line-height:1.22}h1{font-size:clamp(2.2rem,5vw,3.55rem);letter-spacing:-.035em;margin:0 0 14px}h2{font-size:1.72rem;margin:0 0 1rem}h3{font-size:1.2rem;margin:2rem 0 .75rem}h4{font-size:1.06rem;margin:1.6rem 0 .6rem}.lede{font-size:1.12rem;color:var(--muted);max-width:760px;margin:0}.quick-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.quick-links a{padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--panel);text-decoration:none;font-size:.9rem}.doc-section{margin-bottom:42px;padding-bottom:26px;border-bottom:1px solid var(--line);scroll-margin-top:24px}[id]{scroll-margin-top:24px}p{margin:.75rem 0 1rem}ul,ol{padding-left:1.4rem}li+li{margin-top:.4rem}code,kbd{font-family:Consolas,"Cascadia Mono",monospace;font-size:.9em}code{padding:.1rem .3rem;border:1px solid var(--line);border-radius:4px;background:var(--code);overflow-wrap:anywhere}pre{padding:1rem 1.1rem;overflow:auto;border:1px solid var(--line);border-radius:6px;background:var(--code)}pre code{padding:0;border:0;white-space:pre;overflow-wrap:normal}.table-scroll{max-width:100%;overflow:auto;margin:1rem 0 1.35rem;border:1px solid var(--line);border-radius:6px}table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{text-align:left;vertical-align:top;padding:11px 13px;border-bottom:1px solid var(--line)}th{background:var(--panel2);font-weight:600}td:first-child{min-width:145px}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:rgba(255,255,255,.025)}.no-results{padding:20px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}footer{color:var(--muted);font-size:.88rem}footer p{margin:.4rem 0}details{margin:.8rem 0}
+@media(max-width:860px){.layout{display:block;padding:24px 20px 52px}nav{position:static;max-height:none;margin-bottom:28px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;max-height:230px;overflow:auto}nav a.small{padding-left:.35rem}h1{font-size:2.5rem}h2{font-size:1.5rem}.doc-section{margin-bottom:30px}}@media(max-width:480px){body{font-size:15px}.layout{padding:18px 15px 40px}nav{padding:14px}.toc{grid-template-columns:1fr;max-height:200px}th,td{padding:9px 10px}td:first-child{min-width:112px}.quick-links{gap:7px}h1{font-size:2.2rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{:root{color-scheme:light;--page:#fff;--text:#111;--muted:#444;--line:#bbb;--panel:#fff;--panel2:#eee;--code:#f5f5f5;--accent:#0645ad}.layout{display:block;padding:0;max-width:none}nav,.quick-links,.search-tools,.skip{display:none}.doc-section[hidden]{display:block!important}.table-scroll{overflow:visible}pre{white-space:pre-wrap}a{text-decoration:none}}
+</style></head><body><a class="skip" href="#guide">Skip to guide</a><div class="layout">
+<nav aria-label="Guide navigation"><h2>Vine Generator</h2><div class="search-tools" hidden><label for="guide-search">Search this guide</label><div class="search-line"><input id="guide-search" type="search" placeholder="e.g. leaves, runtime, touch" autocomplete="off"><button id="clear-search" type="button">Clear</button></div><p class="search-status" id="search-status" role="status" aria-live="polite"></p></div><div class="toc"><a href="#start-with-a-saved-vine">Start with a saved vine</a><a href="#explore-reclaimed">Explore Reclaimed</a><a href="#direct-the-plant">Direct the plant</a><a href="#choose-foliage">Choose foliage</a><a href="#export-a-finished-vine">Export a finished vine</a><a href="#runtime-and-performance">Runtime and performance</a><a href="#troubleshooting">Troubleshooting</a><a href="#reclaimed">Reclaimed tour and controls</a><a class="small" href="#reclaimed-keyboard-and-mouse">Keyboard and mouse</a><a class="small" href="#reclaimed-gamepad">Gamepad</a><a class="small" href="#reclaimed-windows-touchscreen">Windows touchscreen</a></div></nav>
+<main id="guide"><header><p class="eyebrow">FunByDefault · Unreal Engine</p><h1>Vine Generator</h1><p class="lede">Create climbing, branching and hanging vines, direct their growth, choose foliage, and save finished geometry as Static Mesh assets.</p><div class="quick-links"><a href="#start-with-a-saved-vine">Start a vine</a><a href="#runtime-and-performance">Runtime setup</a><a href="#reclaimed">Tour &amp; controls</a></div></header><p class="no-results" id="no-results" role="status" hidden>No matching section. Try a shorter term such as leaves, runtime, export or touch.</p>
+<section class="doc-section" id="start-with-a-saved-vine"><h2>Start with a saved vine</h2>
+<ol>
+<li>Enable <strong>Vine Generator</strong> and restart Unreal Editor if prompted. In the Content Browser settings, enable <strong>Show Plugin Content</strong>.</li>
+<li>Open <code>/VineGenerator/Example/Maps/VineGeneratorAuthoringShowcase</code> for <strong>Reclaimed</strong>, an editable ruined courtyard with a nine-station playable tour. The original <code>/VineGenerator/Example/Maps/VineGeneratorShowcase</code> retains its population and dynamics examples.</li>
+<li>Drag a vine Blueprint from <code>/VineGenerator/Presets</code> into your own level near a surface with collision. The actor's forward direction supplies the initial growth direction.</li>
+<li>Select the actor and press <strong>Generate / Regenerate Vine</strong> in <strong>Setup &amp; Generate</strong>. Read the status message in that section if the result is empty or stops early.</li>
+<li>When you like the overall shape, press <strong>Keep Current Variation</strong> in <strong>Variation</strong>. Adjust length, branching or leaves, then regenerate to compare your changes using the same seed. <strong>New Variation</strong> generates another plant.</li>
+<li>Save the level. <strong>Regenerate When Play Starts</strong> is off by default, so the saved generated mesh is used in play. Enable it only when the plant should grow again at runtime.</li>
+</ol>
+<p>Generation needs valid collision surfaces for surface crawling. Guides influence direction while collision and turn limits remain in effect. A guide behind a wall cannot pull a stem through the wall.</p>
+<h3 id="find-the-settings-you-need">Find the settings you need</h3>
+<p>Start with the open <strong>Setup &amp; Generate</strong> and <strong>Variation</strong> sections. Expand another section when you need it; the small advanced-properties arrow reveals specialist controls. Hover a setting for its purpose, units and dependencies. Controls for disabled features stay hidden until that feature is enabled.</p>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>What you want to change</th>
+<th>Where to start</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall size and amount of branching</td>
+<td>Setup &amp; Generate, then Branching</td>
+</tr>
+<tr>
+<td>Keep a result while tuning, or try a new plant</td>
+<td>Variation</td>
+</tr>
+<tr>
+<td>Starting surface or attachment distance</td>
+<td>Find a Surface</td>
+</tr>
+<tr>
+<td>How stems follow walls or hang between supports</td>
+<td>Surface Growth and Hanging Growth</td>
+</tr>
+<tr>
+<td>Leaf species, color, size or density</td>
+<td>Leaves</td>
+</tr>
+<tr>
+<td>Stem thickness and material</td>
+<td>Stem Appearance</td>
+</tr>
+<tr>
+<td>A specific path, a clear doorway or a trim</td>
+<td>Guides &amp; Pruning</td>
+</tr>
+<tr>
+<td>Movement during play</td>
+<td>Runtime Motion</td>
+</tr>
+<tr>
+<td>A finished Static Mesh asset</td>
+<td>Static Mesh Export</td>
+</tr>
+<tr>
+<td>An incomplete result or a budget limit</td>
+<td>Setup &amp; Generate status, then Generation Statistics and Performance</td>
+</tr>
+<tr>
+<td>Optional pooling with a spawner</td>
+<td>Spawner Integration</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>New Seed Each Generation</strong> is enabled by default. <strong>Keep Current Variation</strong> copies <strong>Last Used Seed</strong> into <strong>Seed</strong> and disables that automatic randomization without rebuilding the plant. A fixed seed makes comparisons useful, but changes to collision, guides, actor transforms or growth settings can still alter the shape. <strong>New Variation</strong> creates a fresh result without changing the automatic-randomization preference. Clear or review existing pruning rules before changing the composition.</p>
+</section><section class="doc-section" id="explore-reclaimed"><h2>Explore Reclaimed</h2>
+<p>Open the authoring showcase and press <strong>Play</strong>. Use <strong>Tab</strong> to visit the next station, <strong>WASD</strong> to move, and hold the <strong>right mouse button</strong> to look around. The HUD offers the current station's actions: regrowth, guides, exclusions, pruning, seasonal color or hanging-stem motion. The production station displays a saved three-LOD population batch.</p>
+<p>On a Windows touchscreen, tap once to reveal the touch controls. Drag the left side to move and the right side to look; use the on-screen buttons for height, station actions and the menu. Tap anywhere to restore hidden controls. Physical touchscreen and gamepad acceptance remain pending.</p>
+<p>See the <a href="#reclaimed">Reclaimed tour and demo controls</a> for the station guide, keyboard, gamepad and touch mappings, and the distinction between runtime interactions and editor authoring. The map supplies its own optional demo GameMode and does not require project input mappings.</p>
+</section><section class="doc-section" id="direct-the-plant"><h2>Direct the plant</h2>
+<ol>
+<li>Place a <strong>Vine Growth Guide</strong> actor in the level and choose <strong>Guide Mode</strong> under <strong>Setup</strong>.</li>
+<li>Position the attractor, edit the spline or frame the exclusion box using the controls below. Leave <strong>Guide Enabled</strong> checked.</li>
+<li>Select the vine, expand <strong>Guides &amp; Pruning</strong>, and add an element to <strong>Growth Guides</strong>. Use its actor picker or eyedropper to select the guide you placed. Repeat for other guides that should affect this vine.</li>
+<li>Press <strong>Generate / Regenerate Vine</strong>. Regenerate again after moving, resizing, disabling or editing any assigned guide.</li>
+</ol>
+<p>Only assigned guides affect a vine. A guide can be assigned to several vines, and each affected vine needs regeneration after an edit.</p>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Guide mode</th>
+<th>Use</th>
+<th>Main controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attractor</td>
+<td>Encourage tips toward a target</td>
+<td>Move the guide actor; set Influence Radius and Steering Strength</td>
+</tr>
+<tr>
+<td>Guide Spline</td>
+<td>Encourage a path around an arch or along a structure</td>
+<td>Editable spline points, Spline Look Ahead, Influence Radius</td>
+</tr>
+<tr>
+<td>Exclusion Box</td>
+<td>Keep stems and leaves out of a doorway or window</td>
+<td>Exclusion Box component's Box Extent, actor rotation and scale</td>
+</tr>
+</tbody>
+</table></div>
+<p>For a spline, select the <strong>Guide Spline</strong> component and edit its points in the viewport. The spline's point order is the travel direction. <strong>Guide Influence</strong> blends guided and natural growth. <strong>Guide Child Branches Too</strong> controls whether attraction and spline steering affect child branches. Exclusions always apply to every branch and are checked over whole stem intervals, including stem radius.</p>
+<p>The guide shows only the settings relevant to its mode. <strong>Influence Radius</strong> is measured in centimeters from an attractor or the nearest spline point; place the path within that distance of the growing stem. <strong>Spline Look Ahead</strong> chooses a target farther along the spline. The advanced <strong>Arrival Radius</strong> softens steering near the target. For an exclusion, select the <strong>Exclusion Box</strong> component and adjust <strong>Box Extent</strong>, or scale and rotate the actor. Box Extent is the half-size, so an X extent of 100 cm makes a 200 cm wide box before actor scaling. Keep the vine's starting point outside the box.</p>
+<p>Exclusions stop a branch that cannot find a valid advance. They do not plan a route around an obstacle. They also add no gameplay collision: later free-span dynamics can move a stem into an excluded region. Existing plants change only after regeneration.</p>
+<h3 id="prune-an-unwanted-stem">Prune an unwanted stem</h3>
+<ol>
+<li>Generate the vine and expand <strong>Guides &amp; Pruning</strong>.</li>
+<li>Select <strong>Pruning Marker (Local Position)</strong> and move its viewport handle onto the unwanted stem. Increase <strong>Pruning Pick Radius</strong> if the marker is difficult to place.</li>
+<li>Press <strong>Prune At Marker</strong> to shorten the nearest stem. Enable <strong>Remove Whole Branch at Marker</strong> first to remove that branch and its descendants.</li>
+<li>Read <strong>Pruning Status</strong> if no stem was selected. Save the level to retain the trim.</li>
+</ol>
+<p>Pruning records branch identifiers and lengths and fixes the plant's last generation seed. Unrelated branches keep their random choices because the complete plant is simulated before the trims are applied. Pruning reduces visible geometry; it does not reduce the original growth simulation budget.</p>
+<p>Keep the seed, growth settings, guide layout and collision environment stable while editing trims. A changed plant can have different branch identifiers. Use <strong>Clear Pruning And Regenerate</strong> before changing the composition substantially. For Blueprint tools, use <strong>Find Nearest Vine Branch</strong>, <strong>Get Generated Branch Ids</strong> and <strong>Prune Branch</strong>.</p>
+</section><section class="doc-section" id="choose-foliage"><h2>Choose foliage</h2>
+<p>Existing vines keep <strong>Legacy Textured</strong> leaves. In <strong>Leaves</strong>, choose <strong>Ivy</strong>, <strong>Heart Leaf</strong>, <strong>Lance Leaf</strong>, <strong>Monstera</strong> or <strong>Virginia Creeper</strong>, select <strong>Spring</strong>, <strong>Summer</strong>, <strong>Autumn</strong> or <strong>Dry</strong>, and press <strong>Apply Selected Foliage Preset</strong>. This resets the selected species' foliage size, spacing, fold, tint and rotation defaults while preserving the growth and seed. Press <strong>Generate / Regenerate Vine</strong> to update the geometry.</p>
+<p>The five species use modeled silhouettes and separate foliage material sections. The six supplied modeled-species Blueprint presets include photographic leaf color, normal and roughness detail. Their reusable materials are under <code>/VineGenerator/Materials/Foliage</code>, with textures under <code>/VineGenerator/Textures/Foliage</code>. Start from the matching Blueprint preset, or assign its <code>MI_VineGenerator_*</code> material to <strong>Leaf Material</strong>. Changing <strong>Leaf Style</strong> does not automatically replace the assigned material; native and legacy defaults remain unchanged. <strong>Leaf Tint</strong>, <strong>Leaf Color Variation</strong> and <strong>Leaf Roll Variation</strong> provide deterministic variation. Density, spacing, size and maximum leaf count remain independently adjustable. Seasonal palettes change color without automatically changing leaf density.</p>
+<p>To change only the palette after tuning a plant, change <strong>Leaf Season</strong> and regenerate. <strong>Apply Selected Foliage Preset</strong> reapplies the species defaults, including size and spacing. Virginia Creeper places a compound group of five leaflets at each leaf placement; Monstera uses a broad blade with narrow splits along its edges.</p>
+<p>The Presets folder contains eleven starting points: the original Climbing, Hanging, Dense and Lightweight vines, plus Ivy Spring, Ivy Autumn, Heart Leaf Summer, Lance Leaf Dry, Monstera Summer, Virginia Creeper Autumn and Custom Leaf. The Reclaimed specimens have additional scene-specific settings, so their density and size can differ from the presets. Photographic surface detail does not change the modeled leaf outline; inspect silhouettes at your intended viewing distance, or prepare custom geometry for a different shape.</p>
+<p>Press <strong>Keep Current Variation</strong> before comparing foliage to reuse the current plant's seed. Use <strong>New Variation</strong> when you want a different plant.</p>
+<h3 id="use-your-own-leaf-mesh">Use your own leaf mesh</h3>
+<ol>
+<li>Import a small leaf Static Mesh. Orient its base-to-tip direction along <strong>+X</strong>, width along <strong>Y</strong>, and front normal along <strong>+Z</strong>. The preparation step normalizes its pivot and size.</li>
+<li>Select one placed vine and expand <strong>Custom Leaf Preparation</strong>. Choose <strong>Source Leaf Static Mesh</strong>, <strong>Source Mesh LOD</strong> and a new <strong>Save Leaf Asset As</strong> path, such as <code>/Game/Vines/LeafMesh</code>. Use an imported or authored LOD with editable source geometry; automatically reduced render-only LODs cannot be prepared.</li>
+<li>Press <strong>Prepare and Assign Custom Leaf Mesh</strong>, then <strong>Generate / Regenerate Vine</strong>. A reusable <strong>Vine Generator Leaf Mesh</strong> asset is saved and assigned.</li>
+</ol>
+<p>Preparation requires UV0, positive mesh build scales and saved materials in every used slot. It copies geometry, UV0, vertex colors and material sections into a data asset that is retained by cooking. The source Static Mesh does not need <strong>Allow CPU Access</strong> for runtime growth. The source limit is 4,096 vertex instances (UV and normal seams count separately), 8,192 triangles and eight nonempty sections per leaf template; choose much smaller leaf geometry for dense plants.</p>
+<p>Custom materials control their own opacity and shading. To use per-leaf tint, multiply the material's base color by <strong>Vertex Color RGB</strong>. <strong>Use Seasonal Tint On Custom Leaves</strong> is off by default to preserve imported art. Additional source UV channels are not imported. Existing leaf destination assets are preserved: choose a new name when preparing a revision, then assign the new asset.</p>
+</section><section class="doc-section" id="export-a-finished-vine"><h2>Export a finished vine</h2>
+<ol>
+<li>Select one completed vine and expand <strong>Static Mesh Export</strong>. Disable <strong>Simulate Free Spans At Runtime</strong> when exporting a vine with unsupported spans as static scenery.</li>
+<li>Set <strong>Save In Folder</strong> to a project Content folder such as <code>/Game/Vines</code>. Enter <strong>Asset Name (Optional)</strong>, such as <code>SM_Vine_Wall</code>, or leave it empty to use the actor label. Save assigned Material and Material Instance assets first; dynamic material instances cannot be stored in the export.</li>
+<li>Start with <strong>LOD Count</strong> set to one and <strong>Enable Nanite</strong> disabled. Optionally choose up to four LODs including LOD0, and enable <strong>Add Collision to Export</strong> or <strong>Place Exported Mesh in Level</strong>.</li>
+<li>Press <strong>Export Static Mesh</strong>. The asset appears in the Content Browser; the status explains the result.</li>
+</ol>
+<p>LOD0 retains the visible source geometry, material slots, UV channels, vertex colors, normals and tangents. Export creates a unique asset and retains the editable vine. Optional actor placement is undoable; it overlaps the source until you move or hide one of them. The exported mesh is a static snapshot: procedural growth, editable guides and free-span simulation remain on the source vine.</p>
+<p>Save the level after placing an exported actor. If asset saving fails, the built asset remains unsaved in the Content Browser and no actor is placed. Resolve the destination's write permissions and save the asset before using it.</p>
+<p>Lower LODs use Unreal's installed Static Mesh reducer. Each enabled triangle target is a percentage of original LOD0, must be at least 1%, and must be lower than the preceding LOD's percentage. Small leaves may disappear or change shape, so inspect every generated LOD at its intended viewing distance. Reduction targets are approximate, and screen-size thresholds are selected automatically. Source vertex and triangle budgets are checked against LOD0; adding reduced LODs does not lower that source cost. Complex triangle collision is suitable for static scenery and cannot be used as a simulated rigid body's simple collision.</p>
+<h3 id="nanite">Nanite</h3>
+<p>Nanite is optional for exported meshes and population batches with supported opaque or masked surface materials. It also requires compatible project settings, rendering configuration and hardware. Masked foliage can be expensive even with Nanite; profile the result in your own scene. Nanite does not make growth simulation cheaper.</p>
+<p>On Windows, open <strong>Project Settings &gt; Platforms &gt; Windows</strong>, choose <strong>DirectX 12</strong> as the default RHI, and enable <strong>Shader Model 6 (SM6)</strong> under the DirectX 12 targeted shader formats. In <strong>Project Settings &gt; Engine &gt; Rendering</strong>, ensure Nanite is enabled in the <strong>Nanite</strong> section, then restart the editor. Export rejects targets that cannot retain Nanite data and explains the required setup in its status. Keep Nanite disabled when exporting for an unsupported target.</p>
+<h3 id="combine-a-population">Combine a population</h3>
+<p>For your first population, keep generation editable while you check the placement:</p>
+<ol>
+<li>Place a <strong>Vine Generator Spawner Volume</strong> around the surfaces you want to cover. Select its <strong>Spawn Volume</strong> component to edit <strong>Box Extent</strong>, or scale and rotate the actor.</li>
+<li>In <strong>Setup &amp; Generate</strong>, choose a <strong>Vine Preset / Class</strong>, then start with a small <strong>Vine Count</strong>. The spawner uses the selected class's growth and foliage settings; configure a Blueprint preset first when you want a shared look.</li>
+<li>Expand <strong>Runtime Movement</strong>. For static scenery, set <strong>Runtime Movement</strong> to <strong>Disable Free-Span Dynamics</strong>. The spawner otherwise requests motion for a bounded subset by default, even though standalone native vines start with motion disabled.</li>
+<li>In <strong>Save &amp; Optimize</strong>, disable <strong>Auto Batch After Editor Spawn</strong> while adjusting individual plants. Press <strong>Spawn Vines</strong>, then follow the progress shown in <strong>Setup &amp; Generate</strong> until the final meshes are ready.</li>
+<li>When you want to replace the whole population after a settings change, use <strong>Respawn Vines</strong>. With <strong>Fill Only Missing Vines</strong> enabled by default, <strong>Spawn Vines</strong> only adds missing vines; it preserves existing ones. To repeat placement, expand <strong>Layout &amp; Variation</strong>, press <strong>Reuse Last Seed</strong>, then respawn. This copies <strong>Last Used Population Seed</strong> into <strong>Population Seed</strong> and disables <strong>New Layout Each Batch</strong>. Matching placement also requires the same volume, settings and environment.</li>
+</ol>
+<p>Select a <strong>Vine Generator Spawner Volume</strong> and expand <strong>Save &amp; Optimize</strong>. Set <strong>Generated Mesh Folder</strong> and expand <strong>Population Mesh Build Settings</strong> for the same LOD and Nanite controls as individual export. Press <strong>Build Population Render Batch</strong> after generation finishes. Compatible static vines are combined into spatial chunks with their materials; vines that require runtime actors, including free-span dynamics, remain individual.</p>
+<p><strong>Auto Batch After Editor Spawn</strong> is enabled by default. Enable <strong>Keep Editable Source Vines</strong> before spawning or building if you want <strong>Restore Individual Vines</strong> to recover the exact editable actors. With this option off, batching removes the source actors; use <strong>Respawn Vines</strong> with the recorded population seed to generate them again. Automatic batching of Blueprint subclasses is separately disabled by default; <strong>Auto Batch Vine Actor Subclasses</strong> opts into removing their per-instance actor identity and runtime behavior.</p>
+<p>Save the level after building or restoring. Keep the generated mesh assets and managed collision proxy with the population. Changed geometry or LOD settings create new assets; older batch assets are retained because other levels may reference them. If a batch does not complete, read the status in <strong>Setup &amp; Generate</strong> and <strong>Last Population Batch Result</strong> in <strong>Diagnostics</strong>.</p>
+</section><section class="doc-section" id="runtime-and-performance"><h2>Runtime and performance</h2>
+<p>Before using runtime growth in a map with baked or volumetric lighting, select a vine or spawner and open <strong>Performance &gt; Runtime Setup</strong>. Click <strong>Enable Full Lightmap Precaching</strong>, then restart Unreal Editor. This explicit action saves one project-wide setting in <code>Config/DefaultEngine.ini</code>; it prepares additional material pipelines before vines appear and can increase initial preparation work. It does not change the map's lighting. <strong>Check Runtime Setup</strong> reports whether coverage is active, needs a restart, or is limited by another project override. This checks configuration, not game performance.</p>
+<p>If your project configuration is read-only, check it out through your revision-control provider or use <strong>Copy Setting</strong>. Merge this key into the existing renderer section of your project's <code>Config/DefaultEngine.ini</code>, then restart:</p>
+<pre><code class="language-ini">[/Script/Engine.RendererSettings]
+r.PSOPrecache.LightMapPolicyMode=0
+</code></pre>
+<p>The setting is supported on UE 5.4–5.8. Test first-use growth and repeated generation in a packaged scene on the target graphics API and hardware; editor results and a successful setup check do not establish packaged frame times. If PSO precaching or background preparation has been disabled elsewhere in your project, the setup check explains that limitation without changing those settings.</p>
+<p>For runtime growth, enable <strong>Regenerate When Play Starts</strong> or call <strong>Start Growth</strong> / <strong>Reset And Regrow</strong> from Blueprint. Growth and final mesh generation are bounded by the plugin's scheduler and actor budgets. A large custom leaf is repeated many times, so watch the actor's vertex, triangle and leaf limits as well as draw calls.</p>
+<p>In <strong>Setup &amp; Generate</strong>, <strong>Show Only Finished Vine</strong> is enabled by default and hides intermediate runtime growth. Disable it to watch the vine grow over time. Leave <strong>Regenerate When Play Starts</strong> disabled for scenery that should retain its saved editor appearance.</p>
+<p>If your runtime code loads assets only from plain asset-path strings, explicitly include their folders when packaging. In <strong>Project Settings &gt; Packaging</strong>, find the advanced <strong>Additional Asset Directories to Cook</strong> setting and add the needed folders, such as <code>/VineGenerator/Presets</code> or <code>/VineGenerator/Foliage</code>, then test a packaged build. Assets placed in cooked maps or reached through normal asset references follow Unreal's usual cook dependencies.</p>
+<p>Free-span dynamics are opt-in. They simulate selected unsupported stem sections and do not animate a Static Mesh export. Regenerate after enabling <strong>Simulate Free Spans At Runtime</strong> so the saved result contains the required motion data. Keep <strong>Generate Gameplay Mesh Collision</strong> disabled on that vine; moving spans use their own environment sweeps. With this option enabled, leaves are generated on surface-attached stems; unsupported moving spans remain bare. Use the status and budget diagnostics when tuning a population, and measure representative packaged scenes on your target hardware.</p>
+<p>In <strong>Runtime Motion</strong>, press <strong>Check Motion Setup</strong> after generation to inspect whether the saved vine is ready for play. The <strong>Last check</strong> message reports that inspection; check again after changing settings or regenerating. If there are no unsupported spans, the vine has nothing to move. When the check reports readiness, press <strong>Play</strong> to see the motion.</p>
+<p>Prefer saved meshes or Static Mesh exports for scenery that will not grow during gameplay. Use lower leaf density, fewer branches, shorter total length and smaller custom leaf templates before raising safety budgets.</p>
+</section><section class="doc-section" id="troubleshooting"><h2>Troubleshooting</h2>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vine does not grow</td>
+<td>Initial surface collision, actor position and direction, growth result and configured limits</td>
+</tr>
+<tr>
+<td>Every regeneration changes the whole plant</td>
+<td>Use Keep Current Variation before tuning; New Seed Each Generation otherwise picks another seed</td>
+</tr>
+<tr>
+<td>Guide has no effect</td>
+<td>Guide assigned to this vine, enabled state, correct mode, influence radius, steering strength, then regenerate</td>
+</tr>
+<tr>
+<td>Vine disappears after adding an exclusion</td>
+<td>Keep its starting point outside the Exclusion Box and read the Setup &amp; Generate status message</td>
+</tr>
+<tr>
+<td>Pruning selects nothing</td>
+<td>Move marker closer to a visible stem, increase selection radius, read Pruning Status</td>
+</tr>
+<tr>
+<td>Custom leaves missing</td>
+<td>Prepared asset assigned and valid, leaf count/geometry budgets, valid persistent materials</td>
+</tr>
+<tr>
+<td>Custom leaves ignore tint</td>
+<td>Material reads Vertex Color RGB; seasonal tint must be enabled explicitly for custom art</td>
+</tr>
+<tr>
+<td>Export disabled or rejected</td>
+<td>Select one placed vine outside Play/Simulate, wait for final mesh application, and disable unsupported-span simulation for a static export</td>
+</tr>
+<tr>
+<td>Lower LOD loses leaves</td>
+<td>Increase retained triangle percentage, use fewer LODs, inspect reduction in Static Mesh Editor</td>
+</tr>
+<tr>
+<td>Nanite export rejected</td>
+<td>Use supported opaque or masked surface materials, enable Nanite support and a supported target shader format, then restart; on Windows use DirectX 12 with SM6</td>
+</tr>
+<tr>
+<td>Restore Individual Vines unavailable</td>
+<td>Keep Editable Source Vines must have been enabled before batching; otherwise regenerate with Respawn Vines</td>
+</tr>
+<tr>
+<td>Spawner changes do not affect existing plants</td>
+<td>Use Respawn Vines; Spawn Vines preserves existing plants and fills missing slots by default</td>
+</tr>
+<tr>
+<td>Saved level changes at play</td>
+<td>Turn off Regenerate When Play Starts if the saved editor result should be used</td>
+</tr>
+</tbody>
+</table></div>
+<p>Support: <a href="https://discord.com/invite/GKjSWjvEnm">FunByDefault Discord</a>.</p>
+</section><section class="doc-section" id="reclaimed"><h2>Reclaimed tour and controls</h2>
+<p>Reclaimed is the editable showcase at <code>/VineGenerator/Example/Maps/VineGeneratorAuthoringShowcase</code>. Its nine camera stations introduce the same growth, foliage and art-direction features available on your own vines. The courtyard combines weathered masonry, detailed ground surfaces and understory planting; the modeled-species examples use the reusable photographic foliage materials included with their presets.</p>
+<p>The Windows player build targets DirectX 12 and Shader Model 6. Other platforms and graphics configurations have not been validated for this demo.</p>
+<h3 id="reclaimed-open-the-tour-in-unreal-editor">Open the tour in Unreal Editor</h3>
+<ol>
+<li>Enable <strong>Vine Generator</strong> and restart if prompted. Enable <strong>Show Plugin Content</strong> in the Content Browser settings.</li>
+<li>Open <strong>VineGeneratorAuthoringShowcase</strong> under <strong>VineGenerator &gt; Example &gt; Maps</strong>.</li>
+<li>Press <strong>Play</strong>, using Selected Viewport or New Editor Window. The map already selects <strong>Vine Generator Demo GameMode</strong>; no project input mappings are needed.</li>
+<li>Press <strong>Tab</strong> to visit the next station, or click its navigation buttons. Use <strong>Home</strong> to recover the station's original camera view after exploring.</li>
+</ol>
+<p>Use <strong>F1</strong> for the menu during Play In Editor: Unreal may reserve Escape for stopping play. The menu's Quit action directs you to the editor's Stop button. In a packaged demo, Escape opens the menu and Quit exits the application.</p>
+<p>When preparing this tour in your own project, select a vine or spawner and open <strong>Performance &gt; Runtime Setup</strong>. Click <strong>Enable Full Lightmap Precaching</strong>, restart the editor, and use <strong>Check Runtime Setup</strong> to inspect the active policy. This saves a project-wide setting that prepares additional material pipelines before runtime vines appear; it can increase initial preparation work and does not alter lighting. For a read-only configuration, check out <code>Config/DefaultEngine.ini</code> or use <strong>Copy Setting</strong> and add <code>r.PSOPrecache.LightMapPolicyMode=0</code> under its existing <code>[/Script/Engine.RendererSettings]</code> section. Profile a packaged first-use tour on the target hardware; the setup check is not a performance test. See <a href="#runtime-and-performance">runtime setup</a> for the complete configuration snippet.</p>
+<h3 id="reclaimed-the-nine-stations">The nine stations</h3>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Station</th>
+<th>What to try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Reclaimed</td>
+<td>Explore the courtyard and inspect its climbing and hanging plants.</td>
+</tr>
+<tr>
+<td>2. Living growth</td>
+<td>Regrow the specimen with the same seed, then compare a new variation.</td>
+</tr>
+<tr>
+<td>3. Directed by the artist</td>
+<td>Toggle the assigned spline and attractor guides to compare their influence.</td>
+</tr>
+<tr>
+<td>4. Room to breathe</td>
+<td>Toggle the window's exclusion box and compare how the stems occupy the opening.</td>
+</tr>
+<tr>
+<td>5. Shape the silhouette</td>
+<td>Toggle a saved pruning cut and its untrimmed result.</td>
+</tr>
+<tr>
+<td>6. Five species. Four seasons.</td>
+<td>Compare Ivy, Heart Leaf, Lance Leaf, Monstera and Virginia Creeper; cycle their seasonal colors.</td>
+</tr>
+<tr>
+<td>7. Bring your own foliage</td>
+<td>Inspect prepared custom leaf geometry and materials, including seasonal tint.</td>
+</tr>
+<tr>
+<td>8. Movement in the ruins</td>
+<td>Toggle prepared free-span motion and apply an impulse to the unsupported stems.</td>
+</tr>
+<tr>
+<td>9. Ready for production</td>
+<td>Inspect a saved Static Mesh population batch with three LODs.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Actions affect only the specimens assigned to the current station. The overview and production stations are for observation. At the foliage stations, changing season preserves the species, seed, leaf size and spacing. Wait for growth and mesh work to finish before another action; the HUD reports when a specimen is busy or a control cannot run.</p>
+<h3 id="reclaimed-keyboard-and-mouse">Keyboard and mouse</h3>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WASD</td>
+<td>Move the inspection camera</td>
+</tr>
+<tr>
+<td>Q / E</td>
+<td>Move down / up</td>
+</tr>
+<tr>
+<td>Hold right mouse button</td>
+<td>Look around; release it to use the HUD pointer</td>
+</tr>
+<tr>
+<td>Left Shift</td>
+<td>Move faster</td>
+</tr>
+<tr>
+<td>Tab / Shift+Tab</td>
+<td>Next / previous station</td>
+</tr>
+<tr>
+<td>1–9</td>
+<td>Go directly to a station</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>Reset the current station's view</td>
+</tr>
+<tr>
+<td>H</td>
+<td>Hide or show the HUD</td>
+</tr>
+<tr>
+<td>Escape / F1</td>
+<td>Open or close the menu</td>
+</tr>
+<tr>
+<td>R / N</td>
+<td>Regrow with the same seed / select a new seed and regrow</td>
+</tr>
+<tr>
+<td>G / X / P</td>
+<td>Toggle guides / exclusions / pruning at the relevant station</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Cycle seasonal colors at a foliage station</td>
+</tr>
+<tr>
+<td>V / F</td>
+<td>Toggle free-span dynamics / apply an impulse at the dynamics station</td>
+</tr>
+</tbody>
+</table></div>
+<p>The HUD also has clickable navigation and action buttons. The camera flies freely through the scene without collision.</p>
+<h3 id="reclaimed-gamepad">Gamepad</h3>
+<p>Button names below use Xbox-style labels. The HUD switches prompts when you use a controller. Physical controller testing remains pending.</p>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left / right stick</td>
+<td>Move / look</td>
+</tr>
+<tr>
+<td>LT / RT</td>
+<td>Move down / up</td>
+</tr>
+<tr>
+<td>Left stick click</td>
+<td>Move faster</td>
+</tr>
+<tr>
+<td>LB / RB</td>
+<td>Previous / next station</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>Reset the current view</td>
+</tr>
+<tr>
+<td>A / X</td>
+<td>Regrow / choose a new seed</td>
+</tr>
+<tr>
+<td>D-pad Up</td>
+<td>Run the station's feature action</td>
+</tr>
+<tr>
+<td>D-pad Right</td>
+<td>Apply a dynamics impulse</td>
+</tr>
+<tr>
+<td>D-pad Down / Left</td>
+<td>Regrow / choose a new seed</td>
+</tr>
+<tr>
+<td>Start or B</td>
+<td>Open or close the menu</td>
+</tr>
+<tr>
+<td>View</td>
+<td>Hide or show the HUD</td>
+</tr>
+</tbody>
+</table></div>
+<p>In the menu, use D-pad Up/Down to select <strong>Resume exploring</strong>, <strong>Return to station view</strong> or <strong>Leave demo</strong>, press A to activate, or B to resume.</p>
+<h3 id="reclaimed-windows-touchscreen">Windows touchscreen</h3>
+<p>Tap once to reveal the larger touch controls. This first tap only changes the layout; it does not move the camera or activate a button. Physical touchscreen acceptance remains pending. These mappings describe touchscreen input in the Windows demo.</p>
+<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drag and hold on the left half, outside HUD buttons and the field-notes panel</td>
+<td>Move relative to the camera; release to stop</td>
+</tr>
+<tr>
+<td>Drag on the right half, outside HUD controls</td>
+<td>Look around; use both thumbs to move and look together</td>
+</tr>
+<tr>
+<td>Hold: Rise / Hold: Lower</td>
+<td>Move up / down while held</td>
+</tr>
+<tr>
+<td>Fast: Off / Fast: On</td>
+<td>Toggle three-times flight speed</td>
+</tr>
+<tr>
+<td>&lt; / &gt; in the field notes</td>
+<td>Previous / next station</td>
+</tr>
+<tr>
+<td>Reset view</td>
+<td>Restore the current station's camera</td>
+</tr>
+<tr>
+<td>Regrow / New seed</td>
+<td>Regrow the same variation / choose a new seed and regrow</td>
+</tr>
+<tr>
+<td>The station's feature button</td>
+<td>Toggle guides, exclusions, pruning or motion, or cycle the seasonal palette at the relevant station</td>
+</tr>
+<tr>
+<td>Push at the dynamics station</td>
+<td>Apply an impulse to the active hanging stems</td>
+</tr>
+<tr>
+<td>Hide UI</td>
+<td>Hide the controls; tap anywhere to restore them</td>
+</tr>
+<tr>
+<td>Menu</td>
+<td>Pause and show Resume exploring, Return to station view and Leave demo</td>
+</tr>
+</tbody>
+</table></div>
+<p>Tap buttons by releasing inside the same button. Sliding off cancels the action, even if you slide back before lifting your finger. Sliding off <strong>Hold: Rise</strong> or <strong>Hold: Lower</strong> stops the height movement. Field-note text does not steer the camera. The overview and production stations show navigation controls without live plant actions.</p>
+<p>Opening the menu, resetting or changing stations, hiding the HUD, losing focus or switching to mouse/keyboard/gamepad input clears held touch controls and Fast mode. Restoring a hidden HUD consumes the first tap, so the controls return without moving the camera or triggering an action. Play In Editor keeps the same Quit behavior described above.</p>
+<h3 id="reclaimed-continue-authoring">Continue authoring</h3>
+<p>Play-session changes are temporary. Stop play to edit the saved actors, guides and pruning markers, then save your level to retain editor changes. <strong>Home</strong> and the menu's <strong>Return to station view</strong> restore only the camera; restart the play session to return all specimens to their saved state. Choosing a new seed clears existing pruning rules.</p>
+<p>The production display was built with the Spawner Volume's real editor batching workflow. It retains editable source vines and three LODs with Nanite disabled. To inspect the LODs, open its <code>SM_ProductionBatch_</code> asset under <strong>VineGenerator &gt; Example &gt; Reclaimed &gt; Fidelity &gt; Meshes</strong>. In the editor, select the Spawner Volume and use <strong>Restore Individual Vines</strong> to work on its retained sources. Duplicate the example map before changing the supplied composition.</p>
+<p>The runtime tour demonstrates growth, seasonal changes and motion. Its moving unsupported stems intentionally remain bare. Creating Static Mesh assets, generating LODs, preparing custom leaf assets and restoring population sources are editor operations. Static Mesh batches do not grow or simulate free spans. See <a href="#export-a-finished-vine">the main guide</a> for export, LOD and Nanite setup, and <a href="#use-your-own-leaf-mesh">custom leaf preparation</a> to use your own art.</p>
+</section>
+<footer><p>Vine Generator by FunByDefault. Use the plugin package built for your Unreal Engine version.</p><p><a href="https://discord.com/invite/GKjSWjvEnm">Community support</a> · <a href="#guide">Back to top</a></p></footer></main></div><script>
+(() => {
+  const tools = document.querySelector('.search-tools');
+  const query = document.getElementById('guide-search');
+  const status = document.getElementById('search-status');
+  const empty = document.getElementById('no-results');
+  const sections = [...document.querySelectorAll('.doc-section')];
+  const texts = sections.map(section => section.textContent.toLocaleLowerCase());
+  function filter() {
+    const terms = query.value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    let visible = 0;
+    sections.forEach((section, i) => { section.hidden = !terms.every(term => texts[i].includes(term)); if (!section.hidden) visible++; });
+    empty.hidden = visible !== 0;
+    status.textContent = terms.length ? `${visible} of ${sections.length} sections match` : 'Search topics, controls or settings';
+  }
+  tools.hidden = false;
+  query.addEventListener('input', filter);
+  query.addEventListener('keydown', event => { if (event.key === 'Escape') { query.value = ''; filter(); } });
+  document.getElementById('clear-search').addEventListener('click', () => { query.value = ''; filter(); query.focus(); });
+  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => { if (query.value) { query.value = ''; filter(); } }));
+  filter();
+})();
+</script></body></html>
