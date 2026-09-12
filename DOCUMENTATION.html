@@ -7,12 +7,11 @@
 .skip{position:fixed;left:16px;top:-100px;z-index:10;background:var(--panel);padding:12px}.skip:focus{top:12px}.layout{display:grid;grid-template-columns:260px minmax(0,920px);gap:42px;max-width:1278px;margin:auto;padding:38px 28px 80px}nav{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;padding:18px;border:1px solid var(--line);border-radius:8px;background:var(--panel)}nav h2{margin:0 0 12px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}nav a{display:block;padding:.3rem .35rem;border-radius:4px;color:var(--text);text-decoration:none;font-size:.92rem}nav a:hover{background:var(--panel2)}nav a.small{font-size:.85rem;padding-left:1rem;color:var(--muted)}.search-tools{margin-bottom:16px}.search-tools label{display:block;font-size:.85rem;margin-bottom:5px}.search-line{display:flex;gap:6px}.search-line button{padding:.4rem .55rem}.search-status{color:var(--muted);font-size:.8rem;min-height:1.4em;margin:7px 0 0}main{min-width:0}header{margin-bottom:34px;padding-bottom:28px;border-bottom:1px solid var(--line)}.eyebrow{font-size:.83rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}h1,h2,h3,h4{line-height:1.22}h1{font-size:clamp(2.2rem,5vw,3.55rem);letter-spacing:-.035em;margin:0 0 14px}h2{font-size:1.72rem;margin:0 0 1rem}h3{font-size:1.2rem;margin:2rem 0 .75rem}h4{font-size:1.06rem;margin:1.6rem 0 .6rem}.lede{font-size:1.12rem;color:var(--muted);max-width:760px;margin:0}.quick-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.quick-links a{padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:var(--panel);text-decoration:none;font-size:.9rem}.doc-section{margin-bottom:42px;padding-bottom:26px;border-bottom:1px solid var(--line);scroll-margin-top:24px}[id]{scroll-margin-top:24px}p{margin:.75rem 0 1rem}ul,ol{padding-left:1.4rem}li+li{margin-top:.4rem}code,kbd{font-family:Consolas,"Cascadia Mono",monospace;font-size:.9em}code{padding:.1rem .3rem;border:1px solid var(--line);border-radius:4px;background:var(--code);overflow-wrap:anywhere}pre{padding:1rem 1.1rem;overflow:auto;border:1px solid var(--line);border-radius:6px;background:var(--code)}pre code{padding:0;border:0;white-space:pre;overflow-wrap:normal}.table-scroll{max-width:100%;overflow:auto;margin:1rem 0 1.35rem;border:1px solid var(--line);border-radius:6px}table{border-collapse:collapse;width:100%;font-size:.93rem}th,td{text-align:left;vertical-align:top;padding:11px 13px;border-bottom:1px solid var(--line)}th{background:var(--panel2);font-weight:600}td:first-child{min-width:145px}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:rgba(255,255,255,.025)}.no-results{padding:20px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}footer{color:var(--muted);font-size:.88rem}footer p{margin:.4rem 0}details{margin:.8rem 0}
 @media(max-width:860px){.layout{display:block;padding:24px 20px 52px}nav{position:static;max-height:none;margin-bottom:28px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;max-height:230px;overflow:auto}nav a.small{padding-left:.35rem}h1{font-size:2.5rem}h2{font-size:1.5rem}.doc-section{margin-bottom:30px}}@media(max-width:480px){body{font-size:15px}.layout{padding:18px 15px 40px}nav{padding:14px}.toc{grid-template-columns:1fr;max-height:200px}th,td{padding:9px 10px}td:first-child{min-width:112px}.quick-links{gap:7px}h1{font-size:2.2rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{:root{color-scheme:light;--page:#fff;--text:#111;--muted:#444;--line:#bbb;--panel:#fff;--panel2:#eee;--code:#f5f5f5;--accent:#0645ad}.layout{display:block;padding:0;max-width:none}nav,.quick-links,.search-tools,.skip{display:none}.doc-section[hidden]{display:block!important}.table-scroll{overflow:visible}pre{white-space:pre-wrap}a{text-decoration:none}}
 </style></head><body><a class="skip" href="#guide">Skip to guide</a><div class="layout">
-<nav aria-label="Guide navigation"><h2>Vine Generator</h2><div class="search-tools" hidden><label for="guide-search">Search this guide</label><div class="search-line"><input id="guide-search" type="search" placeholder="e.g. leaves, runtime, touch" autocomplete="off"><button id="clear-search" type="button">Clear</button></div><p class="search-status" id="search-status" role="status" aria-live="polite"></p></div><div class="toc"><a href="#start-with-a-saved-vine">Start with a saved vine</a><a href="#explore-reclaimed">Explore Reclaimed</a><a href="#direct-the-plant">Direct the plant</a><a href="#choose-foliage">Choose foliage</a><a href="#export-a-finished-vine">Export a finished vine</a><a href="#runtime-and-performance">Runtime and performance</a><a href="#troubleshooting">Troubleshooting</a><a href="#reclaimed">Reclaimed tour and controls</a><a class="small" href="#reclaimed-keyboard-and-mouse">Keyboard and mouse</a><a class="small" href="#reclaimed-gamepad">Gamepad</a><a class="small" href="#reclaimed-windows-touchscreen">Windows touchscreen</a></div></nav>
-<main id="guide"><header><p class="eyebrow">FunByDefault · Unreal Engine</p><h1>Vine Generator</h1><p class="lede">Create climbing, branching and hanging vines, direct their growth, choose foliage, and save finished geometry as Static Mesh assets.</p><div class="quick-links"><a href="#start-with-a-saved-vine">Start a vine</a><a href="#runtime-and-performance">Runtime setup</a><a href="#reclaimed">Tour &amp; controls</a></div></header><p class="no-results" id="no-results" role="status" hidden>No matching section. Try a shorter term such as leaves, runtime, export or touch.</p>
+<nav aria-label="Guide navigation"><h2>Vine Generator</h2><div class="search-tools" hidden><label for="guide-search">Search this guide</label><div class="search-line"><input id="guide-search" type="search" placeholder="e.g. leaves, runtime, export" autocomplete="off"><button id="clear-search" type="button">Clear</button></div><p class="search-status" id="search-status" role="status" aria-live="polite"></p></div><div class="toc"><a href="#start-with-a-saved-vine">Start with a saved vine</a><a href="#direct-the-plant">Direct the plant</a><a href="#choose-foliage">Choose foliage</a><a href="#export-a-finished-vine">Export a finished vine</a><a href="#runtime-and-performance">Runtime and performance</a><a href="#troubleshooting">Troubleshooting</a></div></nav>
+<main id="guide"><header><p class="eyebrow">FunByDefault · Unreal Engine</p><h1>Vine Generator</h1><p class="lede">Create climbing, branching and hanging vines, direct their growth, choose foliage, and save finished geometry as Static Mesh assets.</p><div class="quick-links"><a href="#start-with-a-saved-vine">Start a vine</a><a href="#runtime-and-performance">Runtime setup</a></div></header><p class="no-results" id="no-results" role="status" hidden>No matching section. Try a shorter term such as leaves, runtime or export.</p>
 <section class="doc-section" id="start-with-a-saved-vine"><h2>Start with a saved vine</h2>
 <ol>
 <li>Enable <strong>Vine Generator</strong> and restart Unreal Editor if prompted. In the Content Browser settings, enable <strong>Show Plugin Content</strong>.</li>
-<li>Open <code>/VineGenerator/Example/Maps/VineGeneratorAuthoringShowcase</code> for <strong>Reclaimed</strong>, an editable ruined courtyard with a nine-station playable tour. The original <code>/VineGenerator/Example/Maps/VineGeneratorShowcase</code> retains its population and dynamics examples.</li>
 <li>Drag a vine Blueprint from <code>/VineGenerator/Presets</code> into your own level near a surface with collision. The actor's forward direction supplies the initial growth direction.</li>
 <li>Select the actor and press <strong>Generate / Regenerate Vine</strong> in <strong>Setup &amp; Generate</strong>. Read the status message in that section if the result is empty or stops early.</li>
 <li>When you like the overall shape, press <strong>Keep Current Variation</strong> in <strong>Variation</strong>. Adjust length, branching or leaves, then regenerate to compare your changes using the same seed. <strong>New Variation</strong> generates another plant.</li>
@@ -76,10 +75,6 @@
 </tbody>
 </table></div>
 <p><strong>New Seed Each Generation</strong> is enabled by default. <strong>Keep Current Variation</strong> copies <strong>Last Used Seed</strong> into <strong>Seed</strong> and disables that automatic randomization without rebuilding the plant. A fixed seed makes comparisons useful, but changes to collision, guides, actor transforms or growth settings can still alter the shape. <strong>New Variation</strong> creates a fresh result without changing the automatic-randomization preference. Clear or review existing pruning rules before changing the composition.</p>
-</section><section class="doc-section" id="explore-reclaimed"><h2>Explore Reclaimed</h2>
-<p>Open the authoring showcase and press <strong>Play</strong>. Use <strong>Tab</strong> to visit the next station, <strong>WASD</strong> to move, and hold the <strong>right mouse button</strong> to look around. The HUD offers the current station's actions: regrowth, guides, exclusions, pruning, seasonal color or hanging-stem motion. The production station displays a saved three-LOD population batch.</p>
-<p>On a Windows touchscreen, tap once to reveal the touch controls. Drag the left side to move and the right side to look; use the on-screen buttons for height, station actions and the menu. Tap anywhere to restore hidden controls. Physical touchscreen and gamepad acceptance remain pending.</p>
-<p>See the <a href="#reclaimed">Reclaimed tour and demo controls</a> for the station guide, keyboard, gamepad and touch mappings, and the distinction between runtime interactions and editor authoring. The map supplies its own optional demo GameMode and does not require project input mappings.</p>
 </section><section class="doc-section" id="direct-the-plant"><h2>Direct the plant</h2>
 <ol>
 <li>Place a <strong>Vine Growth Guide</strong> actor in the level and choose <strong>Guide Mode</strong> under <strong>Setup</strong>.</li>
@@ -130,7 +125,7 @@
 <p>Existing vines keep <strong>Legacy Textured</strong> leaves. In <strong>Leaves</strong>, choose <strong>Ivy</strong>, <strong>Heart Leaf</strong>, <strong>Lance Leaf</strong>, <strong>Monstera</strong> or <strong>Virginia Creeper</strong>, select <strong>Spring</strong>, <strong>Summer</strong>, <strong>Autumn</strong> or <strong>Dry</strong>, and press <strong>Apply Selected Foliage Preset</strong>. This resets the selected species' foliage size, spacing, fold, tint and rotation defaults while preserving the growth and seed. Press <strong>Generate / Regenerate Vine</strong> to update the geometry.</p>
 <p>The five species use modeled silhouettes and separate foliage material sections. The six supplied modeled-species Blueprint presets include photographic leaf color, normal and roughness detail. Their reusable materials are under <code>/VineGenerator/Materials/Foliage</code>, with textures under <code>/VineGenerator/Textures/Foliage</code>. Start from the matching Blueprint preset, or assign its <code>MI_VineGenerator_*</code> material to <strong>Leaf Material</strong>. Changing <strong>Leaf Style</strong> does not automatically replace the assigned material; native and legacy defaults remain unchanged. <strong>Leaf Tint</strong>, <strong>Leaf Color Variation</strong> and <strong>Leaf Roll Variation</strong> provide deterministic variation. Density, spacing, size and maximum leaf count remain independently adjustable. Seasonal palettes change color without automatically changing leaf density.</p>
 <p>To change only the palette after tuning a plant, change <strong>Leaf Season</strong> and regenerate. <strong>Apply Selected Foliage Preset</strong> reapplies the species defaults, including size and spacing. Virginia Creeper places a compound group of five leaflets at each leaf placement; Monstera uses a broad blade with narrow splits along its edges.</p>
-<p>The Presets folder contains eleven starting points: the original Climbing, Hanging, Dense and Lightweight vines, plus Ivy Spring, Ivy Autumn, Heart Leaf Summer, Lance Leaf Dry, Monstera Summer, Virginia Creeper Autumn and Custom Leaf. The Reclaimed specimens have additional scene-specific settings, so their density and size can differ from the presets. Photographic surface detail does not change the modeled leaf outline; inspect silhouettes at your intended viewing distance, or prepare custom geometry for a different shape.</p>
+<p>The Presets folder contains eleven starting points: the original Climbing, Hanging, Dense and Lightweight vines, plus Ivy Spring, Ivy Autumn, Heart Leaf Summer, Lance Leaf Dry, Monstera Summer, Virginia Creeper Autumn and Custom Leaf. Photographic surface detail does not change the modeled leaf outline; inspect silhouettes at your intended viewing distance, or prepare custom geometry for a different shape.</p>
 <p>Press <strong>Keep Current Variation</strong> before comparing foliage to reuse the current plant's seed. Use <strong>New Variation</strong> when you want a different plant.</p>
 <h3 id="use-your-own-leaf-mesh">Use your own leaf mesh</h3>
 <ol>
@@ -242,249 +237,6 @@ r.PSOPrecache.LightMapPolicyMode=0
 </tbody>
 </table></div>
 <p>Support: <a href="https://discord.com/invite/GKjSWjvEnm">FunByDefault Discord</a>.</p>
-</section><section class="doc-section" id="reclaimed"><h2>Reclaimed tour and controls</h2>
-<p>Reclaimed is the editable showcase at <code>/VineGenerator/Example/Maps/VineGeneratorAuthoringShowcase</code>. Its nine camera stations introduce the same growth, foliage and art-direction features available on your own vines. The courtyard combines weathered masonry, detailed ground surfaces and understory planting; the modeled-species examples use the reusable photographic foliage materials included with their presets.</p>
-<p>The Windows player build targets DirectX 12 and Shader Model 6. Other platforms and graphics configurations have not been validated for this demo.</p>
-<h3 id="reclaimed-open-the-tour-in-unreal-editor">Open the tour in Unreal Editor</h3>
-<ol>
-<li>Enable <strong>Vine Generator</strong> and restart if prompted. Enable <strong>Show Plugin Content</strong> in the Content Browser settings.</li>
-<li>Open <strong>VineGeneratorAuthoringShowcase</strong> under <strong>VineGenerator &gt; Example &gt; Maps</strong>.</li>
-<li>Press <strong>Play</strong>, using Selected Viewport or New Editor Window. The map already selects <strong>Vine Generator Demo GameMode</strong>; no project input mappings are needed.</li>
-<li>Press <strong>Tab</strong> to visit the next station, or click its navigation buttons. Use <strong>Home</strong> to recover the station's original camera view after exploring.</li>
-</ol>
-<p>Use <strong>F1</strong> for the menu during Play In Editor: Unreal may reserve Escape for stopping play. The menu's Quit action directs you to the editor's Stop button. In a packaged demo, Escape opens the menu and Quit exits the application.</p>
-<p>When preparing this tour in your own project, select a vine or spawner and open <strong>Performance &gt; Runtime Setup</strong>. Click <strong>Enable Full Lightmap Precaching</strong>, restart the editor, and use <strong>Check Runtime Setup</strong> to inspect the active policy. This saves a project-wide setting that prepares additional material pipelines before runtime vines appear; it can increase initial preparation work and does not alter lighting. For a read-only configuration, check out <code>Config/DefaultEngine.ini</code> or use <strong>Copy Setting</strong> and add <code>r.PSOPrecache.LightMapPolicyMode=0</code> under its existing <code>[/Script/Engine.RendererSettings]</code> section. Profile a packaged first-use tour on the target hardware; the setup check is not a performance test. See <a href="#runtime-and-performance">runtime setup</a> for the complete configuration snippet.</p>
-<h3 id="reclaimed-the-nine-stations">The nine stations</h3>
-<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
-<thead>
-<tr>
-<th>Station</th>
-<th>What to try</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. Reclaimed</td>
-<td>Explore the courtyard and inspect its climbing and hanging plants.</td>
-</tr>
-<tr>
-<td>2. Living growth</td>
-<td>Regrow the specimen with the same seed, then compare a new variation.</td>
-</tr>
-<tr>
-<td>3. Directed by the artist</td>
-<td>Toggle the assigned spline and attractor guides to compare their influence.</td>
-</tr>
-<tr>
-<td>4. Room to breathe</td>
-<td>Toggle the window's exclusion box and compare how the stems occupy the opening.</td>
-</tr>
-<tr>
-<td>5. Shape the silhouette</td>
-<td>Toggle a saved pruning cut and its untrimmed result.</td>
-</tr>
-<tr>
-<td>6. Five species. Four seasons.</td>
-<td>Compare Ivy, Heart Leaf, Lance Leaf, Monstera and Virginia Creeper; cycle their seasonal colors.</td>
-</tr>
-<tr>
-<td>7. Bring your own foliage</td>
-<td>Inspect prepared custom leaf geometry and materials, including seasonal tint.</td>
-</tr>
-<tr>
-<td>8. Movement in the ruins</td>
-<td>Toggle prepared free-span motion and apply an impulse to the unsupported stems.</td>
-</tr>
-<tr>
-<td>9. Ready for production</td>
-<td>Inspect a saved Static Mesh population batch with three LODs.</td>
-</tr>
-</tbody>
-</table></div>
-<p>Actions affect only the specimens assigned to the current station. The overview and production stations are for observation. At the foliage stations, changing season preserves the species, seed, leaf size and spacing. Wait for growth and mesh work to finish before another action; the HUD reports when a specimen is busy or a control cannot run.</p>
-<h3 id="reclaimed-keyboard-and-mouse">Keyboard and mouse</h3>
-<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
-<thead>
-<tr>
-<th>Control</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>WASD</td>
-<td>Move the inspection camera</td>
-</tr>
-<tr>
-<td>Q / E</td>
-<td>Move down / up</td>
-</tr>
-<tr>
-<td>Hold right mouse button</td>
-<td>Look around; release it to use the HUD pointer</td>
-</tr>
-<tr>
-<td>Left Shift</td>
-<td>Move faster</td>
-</tr>
-<tr>
-<td>Tab / Shift+Tab</td>
-<td>Next / previous station</td>
-</tr>
-<tr>
-<td>1–9</td>
-<td>Go directly to a station</td>
-</tr>
-<tr>
-<td>Home</td>
-<td>Reset the current station's view</td>
-</tr>
-<tr>
-<td>H</td>
-<td>Hide or show the HUD</td>
-</tr>
-<tr>
-<td>Escape / F1</td>
-<td>Open or close the menu</td>
-</tr>
-<tr>
-<td>R / N</td>
-<td>Regrow with the same seed / select a new seed and regrow</td>
-</tr>
-<tr>
-<td>G / X / P</td>
-<td>Toggle guides / exclusions / pruning at the relevant station</td>
-</tr>
-<tr>
-<td>C</td>
-<td>Cycle seasonal colors at a foliage station</td>
-</tr>
-<tr>
-<td>V / F</td>
-<td>Toggle free-span dynamics / apply an impulse at the dynamics station</td>
-</tr>
-</tbody>
-</table></div>
-<p>The HUD also has clickable navigation and action buttons. The camera flies freely through the scene without collision.</p>
-<h3 id="reclaimed-gamepad">Gamepad</h3>
-<p>Button names below use Xbox-style labels. The HUD switches prompts when you use a controller. Physical controller testing remains pending.</p>
-<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
-<thead>
-<tr>
-<th>Control</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Left / right stick</td>
-<td>Move / look</td>
-</tr>
-<tr>
-<td>LT / RT</td>
-<td>Move down / up</td>
-</tr>
-<tr>
-<td>Left stick click</td>
-<td>Move faster</td>
-</tr>
-<tr>
-<td>LB / RB</td>
-<td>Previous / next station</td>
-</tr>
-<tr>
-<td>Y</td>
-<td>Reset the current view</td>
-</tr>
-<tr>
-<td>A / X</td>
-<td>Regrow / choose a new seed</td>
-</tr>
-<tr>
-<td>D-pad Up</td>
-<td>Run the station's feature action</td>
-</tr>
-<tr>
-<td>D-pad Right</td>
-<td>Apply a dynamics impulse</td>
-</tr>
-<tr>
-<td>D-pad Down / Left</td>
-<td>Regrow / choose a new seed</td>
-</tr>
-<tr>
-<td>Start or B</td>
-<td>Open or close the menu</td>
-</tr>
-<tr>
-<td>View</td>
-<td>Hide or show the HUD</td>
-</tr>
-</tbody>
-</table></div>
-<p>In the menu, use D-pad Up/Down to select <strong>Resume exploring</strong>, <strong>Return to station view</strong> or <strong>Leave demo</strong>, press A to activate, or B to resume.</p>
-<h3 id="reclaimed-windows-touchscreen">Windows touchscreen</h3>
-<p>Tap once to reveal the larger touch controls. This first tap only changes the layout; it does not move the camera or activate a button. Physical touchscreen acceptance remains pending. These mappings describe touchscreen input in the Windows demo.</p>
-<div aria-label="Scrollable reference table" class="table-scroll" role="region" tabindex="0"><table>
-<thead>
-<tr>
-<th>Control</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Drag and hold on the left half, outside HUD buttons and the field-notes panel</td>
-<td>Move relative to the camera; release to stop</td>
-</tr>
-<tr>
-<td>Drag on the right half, outside HUD controls</td>
-<td>Look around; use both thumbs to move and look together</td>
-</tr>
-<tr>
-<td>Hold: Rise / Hold: Lower</td>
-<td>Move up / down while held</td>
-</tr>
-<tr>
-<td>Fast: Off / Fast: On</td>
-<td>Toggle three-times flight speed</td>
-</tr>
-<tr>
-<td>&lt; / &gt; in the field notes</td>
-<td>Previous / next station</td>
-</tr>
-<tr>
-<td>Reset view</td>
-<td>Restore the current station's camera</td>
-</tr>
-<tr>
-<td>Regrow / New seed</td>
-<td>Regrow the same variation / choose a new seed and regrow</td>
-</tr>
-<tr>
-<td>The station's feature button</td>
-<td>Toggle guides, exclusions, pruning or motion, or cycle the seasonal palette at the relevant station</td>
-</tr>
-<tr>
-<td>Push at the dynamics station</td>
-<td>Apply an impulse to the active hanging stems</td>
-</tr>
-<tr>
-<td>Hide UI</td>
-<td>Hide the controls; tap anywhere to restore them</td>
-</tr>
-<tr>
-<td>Menu</td>
-<td>Pause and show Resume exploring, Return to station view and Leave demo</td>
-</tr>
-</tbody>
-</table></div>
-<p>Tap buttons by releasing inside the same button. Sliding off cancels the action, even if you slide back before lifting your finger. Sliding off <strong>Hold: Rise</strong> or <strong>Hold: Lower</strong> stops the height movement. Field-note text does not steer the camera. The overview and production stations show navigation controls without live plant actions.</p>
-<p>Opening the menu, resetting or changing stations, hiding the HUD, losing focus or switching to mouse/keyboard/gamepad input clears held touch controls and Fast mode. Restoring a hidden HUD consumes the first tap, so the controls return without moving the camera or triggering an action. Play In Editor keeps the same Quit behavior described above.</p>
-<h3 id="reclaimed-continue-authoring">Continue authoring</h3>
-<p>Play-session changes are temporary. Stop play to edit the saved actors, guides and pruning markers, then save your level to retain editor changes. <strong>Home</strong> and the menu's <strong>Return to station view</strong> restore only the camera; restart the play session to return all specimens to their saved state. Choosing a new seed clears existing pruning rules.</p>
-<p>The production display was built with the Spawner Volume's real editor batching workflow. It retains editable source vines and three LODs with Nanite disabled. To inspect the LODs, open its <code>SM_ProductionBatch_</code> asset under <strong>VineGenerator &gt; Example &gt; Reclaimed &gt; Fidelity &gt; Meshes</strong>. In the editor, select the Spawner Volume and use <strong>Restore Individual Vines</strong> to work on its retained sources. Duplicate the example map before changing the supplied composition.</p>
-<p>The runtime tour demonstrates growth, seasonal changes and motion. Its moving unsupported stems intentionally remain bare. Creating Static Mesh assets, generating LODs, preparing custom leaf assets and restoring population sources are editor operations. Static Mesh batches do not grow or simulate free spans. See <a href="#export-a-finished-vine">the main guide</a> for export, LOD and Nanite setup, and <a href="#use-your-own-leaf-mesh">custom leaf preparation</a> to use your own art.</p>
 </section>
 <footer><p>Vine Generator by FunByDefault. Use the plugin package built for your Unreal Engine version.</p><p><a href="https://discord.com/invite/GKjSWjvEnm">Community support</a> · <a href="#guide">Back to top</a></p></footer></main></div><script>
 (() => {
